@@ -15,6 +15,8 @@ Then call:
 curl -o output.pdf "http://localhost:3000/generate?url=https://example.com"
 ```
 
+[example.pdf](https://github.com/havelaer/pdf/blob/main/example.pdf)
+
 ## Local development
 
 ```bash
