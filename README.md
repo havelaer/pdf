@@ -2,11 +2,12 @@
 
 This project runs a TypeScript Node.js server in Docker and uses Playwright (Chromium) to render web pages to PDF.
 
-## Build and run with Docker
+## Local development
 
 ```bash
-docker build -t pdf .
-docker run -p 3000:3000 pdf
+npm ci
+npx playwright install
+npm run dev
 ```
 
 Then call:
@@ -17,11 +18,12 @@ curl -o output.pdf "http://localhost:3000/generate?url=https://example.com"
 
 [example.pdf](https://github.com/havelaer/pdf/blob/main/example.pdf)
 
-## Local development
+## Build and run with Docker
 
 ```bash
-npm install
-npm run dev
+docker build -t pdf .
+docker run -p 3000:3000 pdf
+curl -o output.pdf "http://localhost:3000/generate?url=https://example.com"
 ```
 
 ## API

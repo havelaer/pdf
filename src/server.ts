@@ -68,7 +68,22 @@ app.get("/generate", async (req: Request, res: Response) => {
   }
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   // Keep startup log concise for container logs.
   console.log(`PDF service listening on port ${PORT}`);
 });
+
+function shutdown(signal: NodeJS.Signals): void {
+  console.log(`Received ${signal}, shutting down...`);
+  server.close((error?: Error) => {
+    if (error) {
+      console.error("Error while shutting down server", error);
+      process.exit(1);
+      return;
+    }
+    process.exit(0);
+  });
+}
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));
