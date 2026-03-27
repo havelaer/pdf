@@ -1,6 +1,6 @@
-# Dockerized Playwright PDF API
+# Playwright PDF Generator
 
-This project runs a TypeScript Node.js server in Docker and uses Playwright (Chromium) to render web pages to PDF.
+This project runs a TypeScript Node.js server and Playwright (Chromium) to render web pages to PDF.
 
 ## Local development
 
@@ -8,23 +8,20 @@ This project runs a TypeScript Node.js server in Docker and uses Playwright (Chr
 npm ci
 npx playwright install
 npm run dev
-```
-
-Then call:
-
-```bash
 curl -o output.pdf "http://localhost:3000/generate?url=https://example.com"
 ```
 
 [example.pdf](https://github.com/havelaer/pdf/blob/main/example.pdf)
 
-## Build and run with Docker
+## With Docker
 
 ```bash
 docker build -t pdf .
 docker run -p 3000:3000 pdf
 curl -o output.pdf "http://localhost:3000/generate?url=https://example.com"
 ```
+
+Note: Passing localhost urls won't work out of the box when dockerized.
 
 ## API
 
